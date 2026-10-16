@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="To-Do Task Manager - Organize, track and manage tasks with priorities, deadlines, and real-time status updates.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✅</text></svg>">
+
+    <title>My Tasks | To-Do Task Manager</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<aside class="side" aria-label="Sidebar">
+    <div class="logo">UI</div>
+    <span title="Home">🏠</span>
+    <span title="Dashboard">📊</span>
+    <span title="Recent tasks">🕒</span>
+    <span title="Tasks">📦</span>
+    <span title="Theme">🌙</span>
+    <span title="Settings">⚙️</span>
+</aside>
+
+<main>
+    <h1>My Tasks</h1>
+
+    <div id="conn-banner" class="conn-banner" hidden role="alert"></div>
+
+    <nav class="tabs" aria-label="Filter tasks">
+        <a href="#" data-s="All" class="on">All Tasks</a>
+        <a href="#" data-s="Pending">Pending</a>
+        <a href="#" data-s="Completed">Completed</a>
+        <a href="#" data-s="Overdue">Overdue</a>
+    </nav>
+
+    <div class="bar">
+        <input
+                type="search"
+                id="search"
+                placeholder="🔍 Search tasks..."
+                aria-label="Search tasks"
+        >
+
+        <select id="prio" aria-label="Filter by priority">
+            <option value="">All priorities</option>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+        </select>
+
+        <button type="button" class="btn primary" id="new">
+            + Create New Task
+        </button>
+    </div>
+
+    <section class="card" aria-label="Task list">
+        <div class="scroll">
+            <table>
+                <thead>
+                <tr>
+                    <th scope="col">Done</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Priority</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Deadline</th>
+                    <th scope="col">Actions</th>
+                </tr>
+                </thead>
+                <tbody id="rows"></tbody>
+            </table>
+        </div>
+
+        <p id="empty" class="empty" hidden>No tasks found.</p>
+    </section>
+</main>
+
+<div class="modal" id="modal">
+    <form id="form">
+        <h2 id="mt">New Task</h2>
+
+        <label for="title">Title *</label>
+        <input id="title" maxlength="150" required>
+
+        <label for="desc">Description</label>
+        <textarea id="desc" rows="3"></textarea>
+
+        <div class="two">
+            <div>
+                <label for="deadline">Deadline</label>
+                <input type="date" id="deadline">
+            </div>
+
+            <div>
+                <label for="priority">Priority</label>
+                <select id="priority">
+                    <option value="Low">Low</option>
+                    <option value="Medium" selected>Medium</option>
+                    <option value="High">High</option>
+                </select>
+            </div>
+        </div>
+
+        <p id="err" class="err" role="alert"></p>
+
+        <div class="end">
+            <button type="button" class="btn" id="cancel">Cancel</button>
+            <button type="submit" class="btn primary">Save</button>
+        </div>
+    </form>
+</div>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>

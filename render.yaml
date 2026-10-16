@@ -1,0 +1,27 @@
+services:
+  # Backend API Service (Spring Boot Docker)
+  - type: web
+    name: todo-backend
+    env: docker
+    dockerfilePath: backend/Dockerfile
+    dockerContext: backend
+    plan: free
+    healthCheckPath: /api/tasks/health
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: DB_URL
+        sync: false
+      - key: DB_USERNAME
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: CORS_ALLOWED_ORIGINS
+        value: "*"
+
+  # Frontend Static Site
+  - type: web
+    name: todo-frontend
+    env: static
+    staticPublishPath: frontend
+    plan: free
